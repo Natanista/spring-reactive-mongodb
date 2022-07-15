@@ -17,24 +17,24 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping
-    public Flux<ProductDTO> getProducts(){
+    public Flux<ProductDTO> getProducts() {
         return productService.getProducts();
     }
 
     @GetMapping("/{id}")
-    public Mono<ProductDTO> getProduct(@PathVariable("id") String id){
+    public Mono<ProductDTO> getProduct(@PathVariable("id") String id) {
         return productService.getProduct(id);
     }
 
-    @GetMapping
+    @GetMapping("/range")
     public Flux<ProductDTO> getProductsBetweenRange(
             @RequestParam("min") BigDecimal min,
-            @RequestParam("max") BigDecimal max){
-            return productService.getProductInRange(min,max);
+            @RequestParam("max") BigDecimal max) {
+        return productService.getProductInRange(min, max);
     }
 
     @PostMapping
-    public Mono<ProductDTO> saveProduct(@RequestBody Mono<ProductDTO> productDTO){
+    public Mono<ProductDTO> saveProduct(@RequestBody Mono<ProductDTO> productDTO) {
         return productService.saveProduct(productDTO);
     }
 
@@ -42,12 +42,12 @@ public class ProductController {
     public Mono<ProductDTO> updateProduct(
             @RequestBody Mono<ProductDTO> productDTO,
             @PathVariable("id") String id
-    ){
+    ) {
         return productService.updateProduct(productDTO, id);
     }
 
     @DeleteMapping("/{id}")
-    public Mono<Void> deleteProduct(@PathVariable("id") String id){
+    public Mono<Void> deleteProduct(@PathVariable("id") String id) {
         return productService.deleteProduct(id);
     }
 
